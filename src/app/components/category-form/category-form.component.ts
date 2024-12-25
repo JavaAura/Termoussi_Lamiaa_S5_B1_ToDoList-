@@ -15,6 +15,7 @@ import { Subscription } from 'rxjs';
 export class CategoryFormComponent {
   categoryName: string = ''; // To hold the category name input
   categoryToUpdate: { name: string } | null = null;
+  errorMessage: string = ''; 
 
   constructor(private categoryService: CategoryService, private router: Router, private route: ActivatedRoute) { }
   
@@ -33,17 +34,20 @@ export class CategoryFormComponent {
 
   onSubmit() {
     if (this.categoryName) {
-      if (this.categoryToUpdate) {
-        // Update existing category
-        this.categoryService.updateCategory(this.categoryToUpdate, this.categoryName);
-        console.log('Category Updated:', this.categoryName);
-      } else {
-        // Add new category
-        this.categoryService.addCategory({ name: this.categoryName });
-        console.log('Category Added:', this.categoryName);
+      try {
+        if (this.categoryToUpdate) {
+          // Update existing category
+          this.categoryService.updateCategory(this.categoryToUpdate, this.categoryName);
+          console.log('Category Updated:', this.categoryName);
+        } else {
+          // Add new category
+          this.categoryService.addCategory({ name: this.categoryName });
+          console.log('Category Added:', this.categoryName);
+        }
+        this.router.navigate(['categories']);
+      } catch (error: any) {
+        this.errorMessage = error.message; 
       }
-
-      this.router.navigate(['categories']); // Navigate back to categories list
     }
   }
 }
