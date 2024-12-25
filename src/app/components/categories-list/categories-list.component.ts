@@ -32,8 +32,8 @@ export class CategoriesListComponent implements OnInit {
 
   // Delete category
   onDeleteCategory(category: { name: string }) {
-    console.log('Delete Category:', category);
-    // this.categoryService.deleteCategory(category);  
-    
+    console.log(' Category to delete:', category);
+     this.categoryService.deleteCategory(category);  
+       
   }
 }

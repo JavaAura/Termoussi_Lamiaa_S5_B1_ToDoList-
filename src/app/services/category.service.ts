@@ -24,4 +24,12 @@ private categoriesSource = new BehaviorSubject<{ name: string }[]>([]);
       this.categoriesSource.next([...currentCategories]);
     }
   }
+
+  deleteCategory(categoryToDelete: { name: string }) {
+    const currentCategories = this.categoriesSource.value;
+    // Filter out the category to delete
+    const updatedCategories = currentCategories.filter(cat => cat.name !== categoryToDelete.name);
+    // Emit the updated list
+    this.categoriesSource.next(updatedCategories);
+  }
 }
