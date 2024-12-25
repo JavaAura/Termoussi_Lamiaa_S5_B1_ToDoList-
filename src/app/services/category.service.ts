@@ -1,24 +1,30 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { Category } from '../models/category.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CategoryService {
-  private categoriesSource = new BehaviorSubject<{ name: string }[]>([]);
+  private categoriesSource = new BehaviorSubject<Category[]>([]);
   categories$ = this.categoriesSource.asObservable();
   constructor() { }
 
-  addCategory(category: { name: string }) {
+  addCategory(category: Category) {
     const currentCategories = this.categoriesSource.value;
     const categoryExists = currentCategories.some(cat => cat.name.toLowerCase() === category.name.toLowerCase());
     if (categoryExists) {
       throw new Error('Category name must be unique.');
     }
+    // Assign a unique ID if not provided
+    const newId = currentCategories.length > 0
+      ? Math.max(...currentCategories.map(cat => cat.id ?? 0)) + 1
+      : 1;
+    const newCategory = { ...category, id: category.id ?? newId };
     this.categoriesSource.next([...currentCategories, category]);
   }
 
-  updateCategory(categoryToUpdate: { name: string }, newCategoryName: string) {
+  updateCategory(categoryToUpdate: Category, newCategoryName: string) {
     const currentCategories = this.categoriesSource.value;
     //category name must be unique
     const categoryExists = currentCategories.some(
@@ -38,7 +44,7 @@ export class CategoryService {
     }
   }
 
-  deleteCategory(categoryToDelete: { name: string }) {
+  deleteCategory(categoryToDelete: Category) {
     const currentCategories = this.categoriesSource.value;
     // Filter out the category to delete
     const updatedCategories = currentCategories.filter(cat => cat.name !== categoryToDelete.name);
