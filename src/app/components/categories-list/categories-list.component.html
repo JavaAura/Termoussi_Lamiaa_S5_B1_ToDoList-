@@ -1,0 +1,8 @@
+<div class="categories-list-container">
+    <h2>Categories</h2>
+    <button class="btn btn-primary" (click)="onAddCategory()">Add Category</button>
+
+    <ul>
+        <li *ngFor="let category of categories">{{ category.name }}</li>
+    </ul>
+</div>
