@@ -1,7 +1,30 @@
-<nav class="bg-blue-500 p-4 text-white">
-    <ul class="flex space-x-4">
-        <li><a routerLink="/" routerLinkActive="font-bold">Dashboard</a></li>
-        <li><a routerLink="/tasks" routerLinkActive="font-bold">Tasks</a></li>
-        <li><a routerLink="/categories" routerLinkActive="font-bold">Categories</a></li>
-    </ul>
+<nav class="bg-blue-600 p-5 shadow-lg">
+    <div class="max-w-7xl mx-auto flex justify-between items-center">
+        <!-- Logo or app name (optional) -->
+        <div class="text-white text-2xl font-semibold">
+            <a href="/" class="hover:text-blue-200">To-Do List</a>
+        </div>
+
+        <!-- Navigation Links -->
+        <ul class="flex space-x-6">
+            <li>
+                <a routerLink="/" routerLinkActive="font-bold text-blue-300"
+                    class="text-white hover:text-blue-200 transition duration-300">
+                    Dashboard
+                </a>
+            </li>
+            <li>
+                <a routerLink="/tasks" routerLinkActive="font-bold text-blue-300"
+                    class="text-white hover:text-blue-200 transition duration-300">
+                    Tasks
+                </a>
+            </li>
+            <li>
+                <a routerLink="/categories" routerLinkActive="font-bold text-blue-300"
+                    class="text-white hover:text-blue-200 transition duration-300">
+                    Categories
+                </a>
+            </li>
+        </ul>
+    </div>
 </nav>
