@@ -16,4 +16,11 @@ export class TaskService {
     this.tasksSource.next([...currentTasks, task]);
   }
 
+  updateTask(updatedTask: Task): void {
+  
+  }
+
+  deleteTask(taskToDelete: Task): void {
+  
+  }
 }

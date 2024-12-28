@@ -34,5 +34,12 @@ export class TasksListComponent implements OnInit {
     this.toggleTaskForm(); 
   }
   
+  onUpdateTask(task: Task): void {
 
+    this.showTaskForm = true;
+  }
+
+  onDeleteTask(task: Task): void {
+  
+  }
 }

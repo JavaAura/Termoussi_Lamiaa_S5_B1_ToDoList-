@@ -1,8 +1,8 @@
 <!-- src/app/task-list/task-list.component.html -->
 <div class="max-w-4xl mx-auto bg-white p-6 rounded-lg shadow-md">
     <h1 class="text-2xl font-semibold mb-6">Task List</h1>
-<!-- Add Task Button -->
-<button (click)="toggleTaskForm()" class="btn btn-primary mb-4">Add Task</button>
+    <!-- Add Task Button -->
+    <button (click)="toggleTaskForm()" class="btn btn-primary mb-4">Add Task</button>
 
     <div *ngFor="let task of tasks"
         class="task-item flex items-center justify-between p-4 border-b border-gray-200 hover:bg-gray-50">
@@ -25,8 +25,11 @@
         </div>
         <div class="flex items-center space-x-2">
             <span class="text-sm font-medium text-gray-500">Priority: {{ task.priority | titlecase }}</span>
+            <button (click)="onUpdateTask(task)" class="btn btn-warning text-white">Update</button>
+            <button (click)="onDeleteTask(task)" class="btn btn-danger text-white">Delete</button>
         </div>
     </div>
 </div>
 <!-- Task form -->
-<app-task-form *ngIf="showTaskForm"  (taskFormToggled)="toggleTaskForm()" (taskSaved)="onTaskSaved($event)" ></app-task-form>
+<app-task-form *ngIf="showTaskForm" (taskFormToggled)="toggleTaskForm()"
+    (taskSaved)="onTaskSaved($event)"></app-task-form>
