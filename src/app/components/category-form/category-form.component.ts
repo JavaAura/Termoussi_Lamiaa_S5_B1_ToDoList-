@@ -9,7 +9,7 @@ import { Category } from '../../models/category.model';
 @Component({
   selector: 'app-category-form',
   standalone: true,
-  imports: [CommonModule,FormsModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './category-form.component.html',
   styleUrl: './category-form.component.scss'
 })
@@ -17,13 +17,13 @@ export class CategoryFormComponent {
   categoryName: string = ''; // To hold the category name input
   @Input() categoryToUpdate: Category | null = null; // Input to update category
   @Output() categorySaved = new EventEmitter<Category>();
-  errorMessage: string = ''; 
+  errorMessage: string = '';
 
   constructor(private categoryService: CategoryService, private router: Router, private route: ActivatedRoute) { }
-  
+
   ngOnInit(): void {
     if (this.categoryToUpdate) {
-      this.categoryName = this.categoryToUpdate.name || ''; 
+      this.categoryName = this.categoryToUpdate.name || '';
     }
   }
 
@@ -38,11 +38,10 @@ export class CategoryFormComponent {
           this.categoryService.updateCategory(this.categoryToUpdate, this.categoryName);
           console.log('Category Updated:', updatedCategory);
         } else {
-          // Add new category, generate a new id (for example purposes, you can use an auto-generated or UUID value)
           updatedCategory = { name: this.categoryName };
           this.categoryService.addCategory(updatedCategory);
           console.log('Category Added:', updatedCategory);
-        } 
+        }
         this.categorySaved.emit(updatedCategory);
 
       } catch (error: any) {
@@ -50,5 +49,4 @@ export class CategoryFormComponent {
       }
     }
   }
-  
 }

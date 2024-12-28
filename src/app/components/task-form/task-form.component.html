@@ -1,1 +1,52 @@
-<p>task-form works!</p>
+<div class="fixed inset-0 flex items-center justify-center bg-gray-500 bg-opacity-50 z-50">
+    <div class="bg-white p-6 rounded-lg shadow-md max-w-sm w-full">
+        <h2 class="text-xl font-semibold mb-4">Add New Task</h2>
+        <form (ngSubmit)="onSaveTask()">
+            <div class="mb-4">
+                <label for="title" class="block text-sm font-medium text-gray-700">Title</label>
+                <input type="text" id="title" [(ngModel)]="task.title" name="title"
+                    class="mt-1 block w-full p-2 border rounded-md" required />
+            </div>
+            <div class="mb-4">
+                <label for="description" class="block text-sm font-medium text-gray-700">Description</label>
+                <textarea id="description" [(ngModel)]="task.description" name="description"
+                    class="mt-1 block w-full p-2 border rounded-md"></textarea>
+            </div>
+            <div class="mb-4">
+                <label for="priority" class="block text-sm font-medium text-gray-700">Priority</label>
+                <select id="priority" [(ngModel)]="task.priority" name="priority"
+                    class="mt-1 block w-full p-2 border rounded-md">
+                    <option value="high">High</option>
+                    <option value="medium">Medium</option>
+                    <option value="low">Low</option>
+                </select>
+            </div>
+            <div class="mb-4">
+                <label for="category" class="block text-sm font-medium text-gray-700">Category</label>
+                <select id="category" [(ngModel)]="task.categoryName" name="category"
+                    class="mt-1 block w-full p-2 border rounded-md">
+                    <option value="" disabled>Select a category</option>
+                    <option *ngFor="let category of categories" [value]="category.name">{{ category.name }}</option>
+                </select>
+            </div>
+            <div class="mb-4">
+                <label for="dueDate" class="block text-sm font-medium text-gray-700">Due Date</label>
+                <input type="datetime-local" id="dueDate" [(ngModel)]="task.dueDate" name="dueDate"
+                    class="mt-1 block w-full p-2 border rounded-md" required />
+            </div>
+            <div class="mb-4">
+                <label for="status" class="block text-sm font-medium text-gray-700">Status</label>
+                <select id="status" [(ngModel)]="task.status" name="status"
+                    class="mt-1 block w-full p-2 border rounded-md">
+                    <option value="pending">Pending</option>
+                    <option value="in-progress">In Progress</option>
+                    <option value="completed">Completed</option>
+                </select>
+            </div>
+            <div class="flex justify-end space-x-2">
+                <button type="button" class="btn btn-secondary" (click)="toggleTaskForm()">Cancel</button>
+                <button type="submit" class="btn btn-primary">Save Task</button>
+            </div>
+        </form>
+    </div>
+</div>

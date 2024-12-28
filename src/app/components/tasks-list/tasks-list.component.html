@@ -1,0 +1,32 @@
+<!-- src/app/task-list/task-list.component.html -->
+<div class="max-w-4xl mx-auto bg-white p-6 rounded-lg shadow-md">
+    <h1 class="text-2xl font-semibold mb-6">Task List</h1>
+<!-- Add Task Button -->
+<button (click)="toggleTaskForm()" class="btn btn-primary mb-4">Add Task</button>
+
+    <div *ngFor="let task of tasks"
+        class="task-item flex items-center justify-between p-4 border-b border-gray-200 hover:bg-gray-50">
+        <div class="flex items-center space-x-4">
+            <div class="flex-shrink-0">
+                <span [ngClass]="{
+          'bg-green-100 text-green-800': task.status === 'completed',
+          'bg-yellow-100 text-yellow-800': task.status === 'inProgress',
+          'bg-gray-100 text-gray-800': task.status === 'notStarted'
+        }" class="px-3 py-1 text-sm font-semibold rounded-full">
+                    {{ task.status | titlecase }}
+                </span>
+            </div>
+            <div>
+                <h2 class="text-lg font-medium">{{ task.title }}</h2>
+                <p class="text-sm text-gray-500">{{ task.description }}</p>
+                <p class="text-xs text-gray-400">Category: {{ task.categoryName }}</p>
+                <p class="text-xs text-gray-400">Due Date: {{ task.dueDate | date }}</p>
+            </div>
+        </div>
+        <div class="flex items-center space-x-2">
+            <span class="text-sm font-medium text-gray-500">Priority: {{ task.priority | titlecase }}</span>
+        </div>
+    </div>
+</div>
+<!-- Task form -->
+<app-task-form *ngIf="showTaskForm"  (taskFormToggled)="toggleTaskForm()" (taskSaved)="onTaskSaved($event)" ></app-task-form>
