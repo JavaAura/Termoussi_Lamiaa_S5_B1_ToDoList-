@@ -1,27 +1,51 @@
-# ToDoList
+Task Management Application
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.11.
+A modern task management application built with Angular and Tailwind CSS that helps users organize their tasks, track progress, and manage categories efficiently.
+Features
 
-## Development server
+Task Management
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+💡 Create, edit, and delete tasks
+🔥 Set priorities (High, Medium, Low)
+📈 Track status (Not Started, In Progress, Completed)
+🗓️ Manage due dates with validation
 
-## Code scaffolding
+Category Management
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+📂 Create and manage task categories
+🔑 Validate unique category names
+⚡ Real-time updates
 
-## Build
+Search & Statistics
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+🔍 Search tasks by name or description
+📊 Real-time statistics dashboard
+✅ Track completion percentages
 
-## Running unit tests
+Technologies Used
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+🎨 Frontend: Angular 17
+💅 Styling: Tailwind CSS
 
-## Running end-to-end tests
+Installation
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+Clone the repository:
 
-## Further help
+    git clone https://github.com/JavaAura/Termoussi_Lamiaa_S5_B1_ToDoList-.git
+Navigate to the project directory:
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+    cd ToDoList
+
+Install dependencies:
+
+    npm install
+
+Run the application:
+
+    ng serve
+
+
+Author and Contact Information
+
+    Termoussi Lamiaa 
+    Email: lamiaa3105@gmail.com
