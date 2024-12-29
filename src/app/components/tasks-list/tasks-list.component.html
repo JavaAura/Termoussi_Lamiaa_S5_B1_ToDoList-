@@ -17,7 +17,7 @@
                 </span>
             </div>
             <div>
-                <h2 class="text-lg font-medium">{{ task.title }}</h2>
+                <h2 class="text-lg font-medium">{{ task.title }},{{task.id}}</h2>
                 <p class="text-sm text-gray-500">{{ task.description }}</p>
                 <p class="text-xs text-gray-400">Category: {{ task.categoryName }}</p>
                 <p class="text-xs text-gray-400">Due Date: {{ task.dueDate | date }}</p>
@@ -26,7 +26,7 @@
         <div class="flex items-center space-x-2">
             <span class="text-sm font-medium text-gray-500">Priority: {{ task.priority | titlecase }}</span>
             <button (click)="onUpdateTask(task)" class="btn btn-warning text-black">Update</button>
-            <button (click)="onDeleteTask(task)" class="btn btn-danger text-black">Delete</button>
+            <button  (click)="onDeleteTask(task.id)" class="btn btn-danger text-black">Delete</button>
         </div>
     </div>
 </div>

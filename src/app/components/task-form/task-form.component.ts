@@ -60,7 +60,7 @@ export class TaskFormComponent {
           this.taskSaved.emit(updatedTask);
         } else {
           // Add a new task
-          const newTask: Task = { ...this.task, id: Date.now() }; // Assign unique ID
+          const newTask: Task = { ...this.task, id: Date.now() }; 
           this.taskService.addTask(newTask);
           console.log('Task added:', newTask);
           this.taskSaved.emit(newTask);

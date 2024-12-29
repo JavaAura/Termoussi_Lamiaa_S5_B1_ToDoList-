@@ -19,9 +19,16 @@ export class TasksListComponent implements OnInit {
   taskToUpdate: Task | null = null;
 
 
-  constructor() { }
 
-  ngOnInit(): void { }
+  constructor(private taskService: TaskService) { 
+   
+  }
+
+  ngOnInit(): void { 
+    this.taskService.tasks$.subscribe(tasks => {
+      this.tasks = tasks;
+    });
+  }
 
   toggleTaskForm() {
     console.log("toggle task in ")
@@ -30,14 +37,14 @@ export class TasksListComponent implements OnInit {
   }
 
   onTaskSaved(task: Task): void {
-    if (this.taskToUpdate) {
-      const index = this.tasks.findIndex((t) => t.id === task.id);
-      if (index !== -1) {
-        this.tasks[index] = task;
-      }
-    } else {
-      this.tasks.push({ ...task, id: this.tasks.length + 1 });
-    }
+    // if (this.taskToUpdate) {
+    //   const index = this.tasks.findIndex((t) => t.id === task.id);
+    //   if (index !== -1) {
+    //     this.tasks[index] = task;
+    //   }
+    // } else {
+    //   this.tasks.push({...task});
+    // }
     this.toggleTaskForm();
   }
 
@@ -46,8 +53,9 @@ export class TasksListComponent implements OnInit {
     this.taskToUpdate = task;
   }
 
-
-  onDeleteTask(task: Task): void {
-
+  onDeleteTask(taskId: number): void {
+    if (confirm('Are you sure you want to delete this task?')) {
+      this.taskService.deleteTask(taskId);  
+    }
   }
 }
