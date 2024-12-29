@@ -16,8 +16,15 @@ export class TaskService {
     this.tasksSource.next([...currentTasks, task]);
   }
 
-  updateTask(updatedTask: Task): void {
-  
+  updateTask(updatedTask: Task) {
+    const currentTasks = this.tasksSource.value;
+    const taskIndex = currentTasks.findIndex((task) => task.id === updatedTask.id);
+    if (taskIndex !== -1) {
+      currentTasks[taskIndex] = updatedTask;
+      this.tasksSource.next([...currentTasks]); 
+    } else {
+      console.warn('Task to update was not found.');
+    }
   }
 
   deleteTask(taskToDelete: Task): void {

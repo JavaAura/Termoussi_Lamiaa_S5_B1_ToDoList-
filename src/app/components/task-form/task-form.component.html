@@ -1,6 +1,6 @@
 <div class="fixed inset-0 flex items-center justify-center bg-gray-500 bg-opacity-50 z-50">
     <div class="bg-white p-6 rounded-lg shadow-md max-w-sm w-full">
-        <h2 class="text-xl font-semibold mb-4">Add New Task</h2>
+        <h2 class="text-xl font-semibold mb-4">{{ taskToUpdate ? 'Update task' : 'Add a New task' }}</h2>
         <form (ngSubmit)="onSaveTask()">
             <div class="mb-4">
                 <label for="title" class="block text-sm font-medium text-gray-700">Title</label>
@@ -42,6 +42,10 @@
                     <option value="in-progress">In Progress</option>
                     <option value="completed">Completed</option>
                 </select>
+            </div>
+            <!-- Error Message -->
+            <div *ngIf="errorMessage" class="text-red-500 mt-2">
+                {{ errorMessage }}
             </div>
             <div class="flex justify-end space-x-2">
                 <button type="button" class="btn btn-secondary" (click)="toggleTaskForm()">Cancel</button>

@@ -14,10 +14,10 @@ import { TaskFormComponent } from '../task-form/task-form.component';
   styleUrl: './tasks-list.component.scss'
 })
 export class TasksListComponent implements OnInit {
-  tasks: Task[] = [];  
+  tasks: Task[] = [];
   showTaskForm = false;
-  
- 
+  taskToUpdate: Task | null = null;
+
 
   constructor() { }
 
@@ -26,20 +26,28 @@ export class TasksListComponent implements OnInit {
   toggleTaskForm() {
     console.log("toggle task in ")
     this.showTaskForm = !this.showTaskForm;
+    this.taskToUpdate = null;
   }
 
   onTaskSaved(task: Task): void {
-    console.log('Task received:', task);
-    this.tasks.push({ ...task, id: this.tasks.length + 1 }); 
-    this.toggleTaskForm(); 
+    if (this.taskToUpdate) {
+      const index = this.tasks.findIndex((t) => t.id === task.id);
+      if (index !== -1) {
+        this.tasks[index] = task;
+      }
+    } else {
+      this.tasks.push({ ...task, id: this.tasks.length + 1 });
+    }
+    this.toggleTaskForm();
   }
-  
-  onUpdateTask(task: Task): void {
 
+  onUpdateTask(task: Task) {
     this.showTaskForm = true;
+    this.taskToUpdate = task;
   }
+
 
   onDeleteTask(task: Task): void {
-  
+
   }
 }

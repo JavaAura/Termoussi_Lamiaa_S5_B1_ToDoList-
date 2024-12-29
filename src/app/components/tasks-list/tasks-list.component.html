@@ -25,11 +25,11 @@
         </div>
         <div class="flex items-center space-x-2">
             <span class="text-sm font-medium text-gray-500">Priority: {{ task.priority | titlecase }}</span>
-            <button (click)="onUpdateTask(task)" class="btn btn-warning text-white">Update</button>
-            <button (click)="onDeleteTask(task)" class="btn btn-danger text-white">Delete</button>
+            <button (click)="onUpdateTask(task)" class="btn btn-warning text-black">Update</button>
+            <button (click)="onDeleteTask(task)" class="btn btn-danger text-black">Delete</button>
         </div>
     </div>
 </div>
 <!-- Task form -->
-<app-task-form *ngIf="showTaskForm" (taskFormToggled)="toggleTaskForm()"
+<app-task-form *ngIf="showTaskForm" [taskToUpdate]="taskToUpdate"  (taskFormToggled)="toggleTaskForm()"
     (taskSaved)="onTaskSaved($event)"></app-task-form>
