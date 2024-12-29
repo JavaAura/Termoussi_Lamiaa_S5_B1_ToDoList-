@@ -9,9 +9,7 @@ import { CategoryFormComponent } from './components/category-form/category-form.
 export const routes: Routes = [
     { path: '', component: DashboardComponent  },
     { path: 'tasks', component: TasksListComponent },
-    { path: 'task-form', component: TaskFormComponent },
     { path: 'categories', component: CategoriesListComponent },
-    {path: 'category-form',component:CategoryFormComponent}
 ];
 
 @NgModule({

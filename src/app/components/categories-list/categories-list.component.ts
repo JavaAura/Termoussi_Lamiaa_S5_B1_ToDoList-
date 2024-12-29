@@ -19,7 +19,6 @@ export class CategoriesListComponent implements OnInit {
 
   constructor(private categoryService: CategoryService, private router: Router) { }
   ngOnInit(): void {
-    // Subscribe to the categories observable to get the updated list
     this.categoryService.categories$.subscribe((categories) => {
       this.categories = categories;
     });
@@ -36,13 +35,12 @@ export class CategoriesListComponent implements OnInit {
   }
   
 
-  // Hide the form after saving the category
   onCategorySaved(category: Category) {
     this.showCategoryForm = false;
-    this.categoryToUpdate = null; // Reset categoryToUpdate
+    this.categoryToUpdate = null; 
     console.log('Category saved:', category);
   }
-  // Delete category
+  
   onDeleteCategory(category: Category) {
     console.log(' Category to delete:', category);
      this.categoryService.deleteCategory(category);  

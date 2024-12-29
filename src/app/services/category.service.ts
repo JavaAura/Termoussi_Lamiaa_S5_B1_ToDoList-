@@ -16,7 +16,7 @@ export class CategoryService {
     if (categoryExists) {
       throw new Error('Category name must be unique.');
     }
-    // Assign a unique ID if not provided
+   
     const newId = currentCategories.length > 0
       ? Math.max(...currentCategories.map(cat => cat.id ?? 0)) + 1
       : 1;
@@ -46,9 +46,7 @@ export class CategoryService {
 
   deleteCategory(categoryToDelete: Category) {
     const currentCategories = this.categoriesSource.value;
-    // Filter out the category to delete
     const updatedCategories = currentCategories.filter(cat => cat.name !== categoryToDelete.name);
-    // Emit the updated list
     this.categoriesSource.next(updatedCategories);
   }
 }

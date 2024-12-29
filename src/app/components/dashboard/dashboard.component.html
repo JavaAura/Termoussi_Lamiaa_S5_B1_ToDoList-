@@ -1,1 +1,8 @@
-<p>dashboard works!</p>
+<div>
+    <h2>Task Statistics</h2>
+    <div>
+        <p><strong>Percentage of tasks completed:</strong> {{ completedPercentage | number:'1.0-2' }}%</p>
+        <p><strong>Percentage of tasks not completed:</strong> {{ notCompletedPercentage | number:'1.0-2' }}%</p>
+        <p><strong>Number of overdue tasks:</strong> {{ overdueTasksCount }}</p>
+    </div>
+</div>

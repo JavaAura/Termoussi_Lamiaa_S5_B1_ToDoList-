@@ -38,12 +38,12 @@
                 <label for="status" class="block text-sm font-medium text-gray-700">Status</label>
                 <select id="status" [(ngModel)]="task.status" name="status"
                     class="mt-1 block w-full p-2 border rounded-md" required>
-                    <option value="pending">notStarted</option>
-                    <option value="in-progress">inProgress</option>
+                    <option value="notStarted">notStarted</option>
+                    <option value="inProgress">inProgress</option>
                     <option value="completed">Completed</option>
                 </select>
             </div>
-            <!-- Error Message -->
+           
             <div *ngIf="errorMessage" class="text-red-500 mt-2">
                 {{ errorMessage }}
             </div>

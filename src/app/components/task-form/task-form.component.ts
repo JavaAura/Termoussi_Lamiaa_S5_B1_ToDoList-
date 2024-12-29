@@ -21,17 +21,9 @@ export class TaskFormComponent {
   categories: Category[] = [];
   errorMessage: string = '';  
   show: boolean = false;
-  maxTitleLength: number = 10; 
-  maxDescriptionLength: number = 15;
-  // task: Task = {
-  //   id: 0,
-  //   title: '',
-  //   description: '',
-  //   dueDate: new Date(),
-  //   priority: 'medium',
-  //   status: 'notStarted',
-  //   categoryName: '',
-  // };
+  maxTitleLength: number = 20; 
+  maxDescriptionLength: number = 40;
+
   constructor(private taskService: TaskService, private categoryService: CategoryService) { }
   ngOnInit(): void {
     this.categoryService.categories$.subscribe((categories) => {
@@ -43,7 +35,7 @@ export class TaskFormComponent {
   }
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['taskToUpdate'] && changes['taskToUpdate'].currentValue) {
-      this.task = { ...changes['taskToUpdate'].currentValue };  // Populate form fields if task is passed for update
+      this.task = { ...changes['taskToUpdate'].currentValue };  
     }
   }
   onSaveTask() {

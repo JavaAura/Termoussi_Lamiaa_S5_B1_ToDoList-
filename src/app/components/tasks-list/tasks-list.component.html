@@ -4,7 +4,6 @@
         <input type="text" [(ngModel)]="searchQuery" placeholder="Search tasks..." (input)="onSearch()">
     </div>
     <h1 class="text-2xl font-semibold mb-6">Task List</h1>
-    <!-- Add Task Button -->
     <button (click)="toggleTaskForm()" class="btn btn-primary mb-4">Add Task</button>
 
     <div  *ngFor="let task of filteredTasks"
