@@ -1,10 +1,13 @@
 <!-- src/app/task-list/task-list.component.html -->
 <div class="max-w-4xl mx-auto bg-white p-6 rounded-lg shadow-md">
+    <div class="search-bar">
+        <input type="text" [(ngModel)]="searchQuery" placeholder="Search tasks..." (input)="onSearch()">
+    </div>
     <h1 class="text-2xl font-semibold mb-6">Task List</h1>
     <!-- Add Task Button -->
     <button (click)="toggleTaskForm()" class="btn btn-primary mb-4">Add Task</button>
 
-    <div *ngFor="let task of tasks"
+    <div  *ngFor="let task of filteredTasks"
         class="task-item flex items-center justify-between p-4 border-b border-gray-200 hover:bg-gray-50">
         <div class="flex items-center space-x-4">
             <div class="flex-shrink-0">

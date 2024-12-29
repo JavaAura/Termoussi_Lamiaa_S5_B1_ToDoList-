@@ -6,10 +6,11 @@ import { TcpSocketConnectOpts } from 'net';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { TaskFormComponent } from '../task-form/task-form.component';
+import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-tasks-list',
   standalone: true,
-  imports: [CommonModule, TaskFormComponent],
+  imports: [CommonModule, TaskFormComponent, FormsModule],
   templateUrl: './tasks-list.component.html',
   styleUrl: './tasks-list.component.scss'
 })
@@ -17,7 +18,8 @@ export class TasksListComponent implements OnInit {
   tasks: Task[] = [];
   showTaskForm = false;
   taskToUpdate: Task | null = null;
-
+  filteredTasks: Task[] = [];
+  searchQuery: string = '';
 
 
   constructor(private taskService: TaskService) { 
@@ -27,6 +29,7 @@ export class TasksListComponent implements OnInit {
   ngOnInit(): void { 
     this.taskService.tasks$.subscribe(tasks => {
       this.tasks = tasks;
+      this.filteredTasks = tasks;
     });
   }
 
@@ -37,14 +40,6 @@ export class TasksListComponent implements OnInit {
   }
 
   onTaskSaved(task: Task): void {
-    // if (this.taskToUpdate) {
-    //   const index = this.tasks.findIndex((t) => t.id === task.id);
-    //   if (index !== -1) {
-    //     this.tasks[index] = task;
-    //   }
-    // } else {
-    //   this.tasks.push({...task});
-    // }
     this.toggleTaskForm();
   }
 
@@ -56,6 +51,18 @@ export class TasksListComponent implements OnInit {
   onDeleteTask(taskId: number): void {
     if (confirm('Are you sure you want to delete this task?')) {
       this.taskService.deleteTask(taskId);  
+    }
+  }
+  
+  onSearch(): void {
+    if (this.searchQuery.trim()) {
+      this.filteredTasks = this.tasks.filter(task =>
+        task.title.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
+        task.description?.toLowerCase().includes(this.searchQuery.toLowerCase() ?? false)
+      );
+      console.log(this.filteredTasks);
+    } else {
+      this.filteredTasks = this.tasks;  
     }
   }
 }
