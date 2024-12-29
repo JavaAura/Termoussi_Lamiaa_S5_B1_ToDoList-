@@ -4,28 +4,36 @@ A modern task management application built with Angular and Tailwind CSS that he
 
 Features
 
-    Task Management
+Task Management
 
 💡 Create, edit, and delete tasks
+
 🔥 Set priorities (High, Medium, Low)
+
 📈 Track status (Not Started, In Progress, Completed)
+
 🗓️ Manage due dates with validation
 
-    Category Management
+Category Management
 
 📂 Create and manage task categories
+
 🔑 Validate unique category names
+
 ⚡ Real-time updates
 
-    Search & Statistics
+Search & Statistics
 
 🔍 Search tasks by name or description
+
 📊 Real-time statistics dashboard
+
 ✅ Track completion percentages
 
 Technologies Used
 
 🎨 Frontend: Angular 17
+
 💅 Styling: Tailwind CSS
 
 Installation
