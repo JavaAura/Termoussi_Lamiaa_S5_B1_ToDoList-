@@ -19,8 +19,10 @@ export class TaskFormComponent {
   @Output() taskSaved = new EventEmitter<Task>();
   task: Task = this.getEmptyTask();
   categories: Category[] = [];
-  errorMessage: string = ''; 
+  errorMessage: string = '';  
   show: boolean = false;
+  maxTitleLength: number = 10; 
+  maxDescriptionLength: number = 15;
   // task: Task = {
   //   id: 0,
   //   title: '',
@@ -45,31 +47,52 @@ export class TaskFormComponent {
     }
   }
   onSaveTask() {
+    this.errorMessage = '';
+
     if (!this.task.title.trim()) {
       this.errorMessage = 'Task title is required.';
       return;
     }
-    if (this.task.title) {
-
-      try {
-        if (this.taskToUpdate) {
-          // Update existing task
-          const updatedTask: Task = { ...this.task };
-          this.taskService.updateTask(updatedTask);
-          console.log('Task updated:', updatedTask);
-          this.taskSaved.emit(updatedTask);
-        } else {
-          // Add a new task
-          const newTask: Task = { ...this.task, id: Date.now() }; 
-          this.taskService.addTask(newTask);
-          console.log('Task added:', newTask);
-          this.taskSaved.emit(newTask);
-        }
-        this.resetForm(); // Reset form after saving
-      } catch (error: any) {
-        this.errorMessage = error.message;
-      }
+    if (this.task.title.length > this.maxTitleLength) {
+      this.errorMessage = `Title cannot exceed ${this.maxTitleLength} characters.`;
+      return;
     }
+    if (!this.task.description.trim()) {
+      this.errorMessage = 'Task desciption is required.';
+      return;
+    }
+    if (!this.task.categoryName.trim()) {
+      this.errorMessage = 'Task category is required.';
+      return;
+    }
+    if (this.task.description && this.task.description.length > this.maxDescriptionLength) {
+      this.errorMessage = `Description cannot exceed ${this.maxDescriptionLength} characters.`;
+      return;
+    }
+    const currentDate = new Date();
+    if (this.task.dueDate && new Date(this.task.dueDate) < currentDate) {
+      this.errorMessage = 'Due date cannot be in the past.';
+      return;
+    }
+    try {
+      if (this.taskToUpdate) {
+        // Update existing task
+        const updatedTask: Task = { ...this.task };
+        this.taskService.updateTask(updatedTask);
+        console.log('Task updated:', updatedTask);
+        this.taskSaved.emit(updatedTask);
+      } else {
+        // Add a new task
+        const newTask: Task = { ...this.task, id: Date.now() }; 
+        this.taskService.addTask(newTask);
+        console.log('Task added:', newTask);
+        this.taskSaved.emit(newTask);
+      }
+      this.resetForm(); 
+    } catch (error: any) {
+      this.errorMessage = `Error: ${error.message || 'An unknown error occurred'}`;
+    }
+    
   }
  
 

@@ -58,7 +58,7 @@ export class TasksListComponent implements OnInit {
     if (this.searchQuery.trim()) {
       this.filteredTasks = this.tasks.filter(task =>
         task.title.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
-        task.description?.toLowerCase().includes(this.searchQuery.toLowerCase() ?? false)
+        task.description.toLowerCase().includes(this.searchQuery.toLowerCase())
       );
       console.log(this.filteredTasks);
     } else {
