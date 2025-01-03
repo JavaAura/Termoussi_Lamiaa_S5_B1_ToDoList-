@@ -6,4 +6,5 @@ export interface Task {
     priority: 'high' | 'medium' | 'low';
     status: 'completed' | 'inProgress' | 'notStarted';
     categoryName: string;
+    isFavorite: boolean;
 }

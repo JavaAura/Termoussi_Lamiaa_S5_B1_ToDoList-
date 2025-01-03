@@ -1,30 +1,78 @@
-<nav class="bg-blue-600 p-5 shadow-lg">
+<nav class="bg-gradient-to-r from-blue-700 via-blue-600 to-blue-500 p-5 shadow-2xl sticky top-0 z-50">
     <div class="max-w-7xl mx-auto flex justify-between items-center">
-        <!-- Logo or app name (optional) -->
-        <div class="text-white text-2xl font-semibold">
-            <a href="/" class="hover:text-blue-200">To-Do List</a>
+        <!-- Logo or app name -->
+        <div class="flex items-center space-x-4">
+            <span class="bg-white p-3 rounded-full shadow-lg">
+                <i class="fas fa-tasks text-blue-600 text-2xl"></i> <!-- Icon -->
+            </span>
+            <a href="/"
+                class="text-white text-3xl font-extrabold tracking-wide hover:text-blue-300 transition duration-300">
+                To-Do List
+            </a>
         </div>
 
-        <ul class="flex space-x-6">
+        <!-- Navigation links -->
+        <ul class="hidden md:flex space-x-8">
             <li>
-                <a routerLink="/" routerLinkActive="font-bold text-blue-300"
-                    class="text-white hover:text-blue-200 transition duration-300">
+                <a routerLink="/" routerLinkActive="font-bold text-white underline decoration-4 decoration-blue-300"
+                    class="text-white hover:text-blue-300 text-lg font-medium transition duration-300">
                     Dashboard
                 </a>
             </li>
             <li>
-                <a routerLink="/tasks" routerLinkActive="font-bold text-blue-300"
-                    class="text-white hover:text-blue-200 transition duration-300">
+                <a routerLink="/tasks"
+                    routerLinkActive="font-bold text-white underline decoration-4 decoration-blue-300"
+                    class="text-white hover:text-blue-300 text-lg font-medium transition duration-300">
                     Tasks
                 </a>
             </li>
             <li>
-                <a routerLink="/categories" routerLinkActive="font-bold text-blue-300"
-                    class="text-white hover:text-blue-200 transition duration-300">
+                <a routerLink="/categories"
+                    routerLinkActive="font-bold text-white underline decoration-4 decoration-blue-300"
+                    class="text-white hover:text-blue-300 text-lg font-medium transition duration-300">
                     Categories
                 </a>
             </li>
-            
         </ul>
+
+        <!-- Mobile menu button -->
+        <button
+            class="md:hidden bg-white text-blue-600 p-2 rounded-lg shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+            id="menu-toggle">
+            <i class="fas fa-bars text-xl"></i>
+        </button>
+    </div>
+
+    <!-- Mobile menu -->
+    <div class="hidden md:hidden mt-4 space-y-4 text-center bg-blue-600 rounded-lg p-4" id="mobile-menu">
+        <a routerLink="/" routerLinkActive="font-bold text-blue-300 underline decoration-2 decoration-white"
+            class="block text-white hover:text-blue-300 text-lg font-medium transition duration-300">
+            Dashboard
+        </a>
+        <a routerLink="/tasks" routerLinkActive="font-bold text-blue-300 underline decoration-2 decoration-white"
+            class="block text-white hover:text-blue-300 text-lg font-medium transition duration-300">
+            Tasks
+        </a>
+        <a routerLink="/categories" routerLinkActive="font-bold text-blue-300 underline decoration-2 decoration-white"
+            class="block text-white hover:text-blue-300 text-lg font-medium transition duration-300">
+            Categories
+        </a>
     </div>
 </nav>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const menuToggle = document.getElementById('menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        if (!menuToggle || !mobileMenu) {
+            console.error("Menu toggle button or mobile menu not found.");
+            return;
+        }
+
+        menuToggle.addEventListener('click', () => {
+            console.log("Menu toggle clicked"); // Debug log
+            mobileMenu.classList.toggle('hidden'); // Toggle the hidden class
+        });
+    });
+</script>

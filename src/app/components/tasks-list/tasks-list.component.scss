@@ -1,61 +1,94 @@
-.tasks-list-container {
-  padding: 20px;
-  max-width: 800px;
-  margin: 0 auto;
-  background-color: #f9f9f9;
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-
-  .task-form {
-    margin-bottom: 20px;
-  }
-
-  .task-list {
-    list-style: none;
-    padding: 0;
-    margin-bottom: 20px;
-
-    .task-item {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background-color: white;
-      padding: 15px;
-      margin-bottom: 10px;
-      border-radius: 4px;
-      border: 1px solid #ddd;
-
-      .task-details {
-        flex-grow: 1;
-        padding-left: 10px;
-      }
-
-      .task-actions {
-        display: flex;
-        gap: 10px;
-
-        button {
-          padding: 5px 10px;
-          cursor: pointer;
-          border-radius: 4px;
-        }
-      }
-    }
-  }
-
-  .priority, .status {
-    margin-top: 5px;
-  }
-}
-.search-bar {
-  margin-bottom: 20px;
-}
-
+/* Custom Styles for Task List */
 .search-bar input {
+  transition: all 0.3s ease;
+}
+
+.search-bar input:focus {
+  box-shadow: 0 0 5px rgba(59, 130, 246, 0.5);
+}
+
+.btn {
+  font-size: 1rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.375rem;
+}
+
+.btn-primary {
+  background: linear-gradient(to right, #2563eb, #3b82f6);
+  color: white;
+}
+
+.btn-primary:hover {
+  background: linear-gradient(to right, #1d4ed8, #2563eb);
+}
+
+.btn-warning {
+  background-color: #fbbf24;
+  color: black;
+}
+
+.btn-warning:hover {
+  background-color: #f59e0b;
+}
+
+.btn-danger {
+  background-color: #ef4444;
+  color: white;
+}
+
+.btn-danger:hover {
+  background-color: #dc2626;
+}
+
+.task-item {
+  transition: all 0.3s ease;
+}
+
+.task-item:hover {
+  transform: translateY(-5px);
+}
+
+.task-item:focus-within {
+  box-shadow: 0 0 10px rgba(59, 130, 246, 0.3);
+}
+
+.favorite-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out, color 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   padding: 8px;
-  font-size: 14px;
-  width: 100%;
-  max-width: 400px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+}
+
+/* Icon transition effect */
+.favorite-btn i {
+  font-size: 24px;
+  color: #ccc;
+  transition: color 0.3s ease;
+}
+
+/* Star color when favorite is true */
+.favorite-btn .fa-star {
+  color: gold;
+}
+
+/* Star color when not a favorite */
+.favorite-btn .fa-star-o {
+  color: #ccc;
+}
+
+/* Hover effect */
+.favorite-btn:hover i {
+  transform: scale(1.1); /* Slightly enlarge the icon on hover */
+  color: #ffcc00; /* Gold when hovering */
+}
+
+/* Active state (when clicked) */
+.favorite-btn:active i {
+  transform: scale(0.95); /* Slightly shrink the icon on click */
 }

@@ -1,33 +1,38 @@
 <!-- Categories Section -->
-<div class="categories-section bg-white p-6 rounded-lg shadow-md">
-    <h2 class="text-2xl font-bold mb-4 text-center">Categories</h2>
+<div class="categories-section bg-white p-8 rounded-xl shadow-2xl max-w-4xl mx-auto mt-8">
+    <h2 class="text-3xl font-bold text-center text-gray-900 mb-6">Categories</h2>
 
+    <!-- Add Category Button -->
     <button
-        class="btn btn-primary bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition duration-200 mb-4 block mx-auto"
+        class="btn btn-primary bg-gradient-to-r from-blue-500 to-indigo-600 text-white px-6 py-3 rounded-full text-lg font-medium shadow-lg hover:from-blue-600 hover:to-indigo-700 transform transition-all duration-300 mb-6 block mx-auto"
         (click)="onAddCategory()">
         Add Category
     </button>
 
-    <div *ngIf="showCategoryForm" class="mt-6">
+    <!-- Category Form (Visible when showCategoryForm is true) -->
+    <div *ngIf="showCategoryForm" class="mt-8 p-6 bg-gray-50 rounded-lg shadow-lg">
         <app-category-form [categoryToUpdate]="categoryToUpdate"
             (categorySaved)="onCategorySaved($event)"></app-category-form>
     </div>
 
-    <ul class="mt-6 space-y-4">
+    <!-- Categories List -->
+    <ul class="mt-8 space-y-6">
         <li *ngFor="let category of categories"
-            class="flex justify-between items-center bg-gray-100 p-4 rounded-lg shadow-lg">
-           
-            <span class="text-lg font-semibold">{{ category.name }}</span>
+            class="flex justify-between items-center bg-white p-6 rounded-xl shadow-xl hover:shadow-2xl transform transition-all duration-500 ease-in-out hover:bg-gradient-to-r from-purple-100 via-purple-50 to-purple-100">
 
-            <div class="space-x-4">
-               
+            <span class="text-xl font-semibold text-gray-800">{{ category.name }}</span>
+
+            <div class="space-x-6">
+                <!-- Update Button -->
                 <button
-                    class="bg-yellow-500 text-white px-3 py-1 rounded-md hover:bg-yellow-600 transition duration-200"
+                    class="bg-gradient-to-r from-yellow-400 to-yellow-500 text-white px-5 py-2 rounded-md font-medium shadow-md hover:from-yellow-500 hover:to-yellow-600 transition duration-300 ease-in-out"
                     (click)="onUpdateCategory(category)">
                     Update
                 </button>
 
-                <button class="bg-red-500 text-white px-3 py-1 rounded-md hover:bg-red-600 transition duration-200"
+                <!-- Delete Button -->
+                <button
+                    class="bg-gradient-to-r from-red-500 to-red-600 text-white px-5 py-2 rounded-md font-medium shadow-md hover:from-red-600 hover:to-red-700 transition duration-300 ease-in-out"
                     (click)="onDeleteCategory(category)">
                     Delete
                 </button>

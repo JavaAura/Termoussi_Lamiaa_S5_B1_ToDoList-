@@ -104,6 +104,7 @@ export class TaskFormComponent {
       priority: 'medium',
       status: 'notStarted',
       categoryName: '',
+      isFavorite:false
     };
   }
   

@@ -25,8 +25,10 @@ export class CategoryFormComponent {
     if (this.categoryToUpdate) {
       this.categoryName = this.categoryToUpdate.name || '';
     }
-  }
 
+  }
+  
+ 
 
   onSubmit() {
     if (this.categoryName) {
@@ -48,4 +50,5 @@ export class CategoryFormComponent {
       }
     }
   }
+
 }

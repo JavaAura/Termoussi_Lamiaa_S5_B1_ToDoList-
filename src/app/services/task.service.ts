@@ -9,6 +9,7 @@ export class TaskService {
 
   private tasksSource = new BehaviorSubject<Task[]>([]);
   tasks$ = this.tasksSource.asObservable();
+  
   constructor() { }
 
   addTask(task: Task) {
@@ -35,5 +36,15 @@ export class TaskService {
     console.log('current tasks: ',currentTasks)
     console.log('updated tasks : ',updatedTasks)
   }
-    
+  
+  toggleFavorite(taskId: number): void {
+    const currentTasks = this.tasksSource.value;
+    const taskIndex = currentTasks.findIndex((task) => task.id === taskId);
+    if (taskIndex !== -1) {
+      currentTasks[taskIndex].isFavorite = !currentTasks[taskIndex].isFavorite;
+      this.tasksSource.next([...currentTasks]); // Notify subscribers
+    } else {
+      console.warn('Task to toggle favorite was not found.');
+    }
+  }
 }

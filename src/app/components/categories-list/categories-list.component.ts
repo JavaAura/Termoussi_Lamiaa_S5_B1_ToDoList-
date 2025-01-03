@@ -42,8 +42,9 @@ export class CategoriesListComponent implements OnInit {
   }
   
   onDeleteCategory(category: Category) {
-    console.log(' Category to delete:', category);
-     this.categoryService.deleteCategory(category);  
-       
+    if (confirm('Are you sure you want to delete this categorie ?')) {
+
+      this.categoryService.deleteCategory(category)
+    }     
   }
 }

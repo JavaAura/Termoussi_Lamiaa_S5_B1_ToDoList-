@@ -1,8 +1,61 @@
-<div>
-    <h2>Task Statistics</h2>
-    <div>
-        <p><strong>Percentage of tasks completed:</strong> {{ completedPercentage | number:'1.0-2' }}%</p>
-        <p><strong>Percentage of tasks not completed:</strong> {{ notCompletedPercentage | number:'1.0-2' }}%</p>
-        <p><strong>Number of overdue tasks:</strong> {{ overdueTasksCount }}</p>
+<div
+    class="relative bg-gradient-to-br from-blue-100 via-white to-blue-50 shadow-2xl rounded-xl p-10 max-w-2xl mx-auto mt-16">
+    <!-- Decorative Background Shape -->
+    <div class="absolute inset-0 overflow-hidden">
+        <svg class="absolute top-0 right-0 transform translate-x-20 -translate-y-10 opacity-30" width="200" height="200"
+            fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="100" cy="100" r="100" fill="url(#gradient1)"></circle>
+            <defs>
+                <linearGradient id="gradient1" x1="0" y1="0" x2="1" y2="1">
+                    <stop stop-color="#93C5FD" offset="0%"></stop>
+                    <stop stop-color="#60A5FA" offset="100%"></stop>
+                </linearGradient>
+            </defs>
+        </svg>
+    </div>
+
+    <h2 class="text-4xl font-extrabold text-gray-800 mb-8 text-center">
+        <i class="fas fa-tasks text-blue-500 mr-2"></i> Task Statistics
+    </h2>
+    <div class="space-y-8">
+        <!-- Tasks Completed -->
+        <div
+            class="flex items-center justify-between bg-white rounded-lg shadow p-6 hover:shadow-lg transition duration-300">
+            <div class="flex items-center space-x-4">
+                <span class="bg-green-100 text-green-600 p-3 rounded-full shadow-inner">
+                    <i class="fas fa-check-circle text-2xl"></i>
+                </span>
+                <p class="text-lg font-medium text-gray-800">Percentage of tasks completed:</p>
+            </div>
+            <span class="text-3xl font-extrabold text-green-600">
+                {{ completedPercentage | number:'1.0-2' }}%
+            </span>
+        </div>
+        <!-- Tasks Not Completed -->
+        <div
+            class="flex items-center justify-between bg-white rounded-lg shadow p-6 hover:shadow-lg transition duration-300">
+            <div class="flex items-center space-x-4">
+                <span class="bg-yellow-100 text-yellow-500 p-3 rounded-full shadow-inner">
+                    <i class="fas fa-exclamation-circle text-2xl"></i>
+                </span>
+                <p class="text-lg font-medium text-gray-800">Percentage of tasks not completed:</p>
+            </div>
+            <span class="text-3xl font-extrabold text-yellow-500">
+                {{ notCompletedPercentage | number:'1.0-2' }}%
+            </span>
+        </div>
+        <!-- Overdue Tasks -->
+        <div
+            class="flex items-center justify-between bg-white rounded-lg shadow p-6 hover:shadow-lg transition duration-300">
+            <div class="flex items-center space-x-4">
+                <span class="bg-red-100 text-red-600 p-3 rounded-full shadow-inner">
+                    <i class="fas fa-times-circle text-2xl"></i>
+                </span>
+                <p class="text-lg font-medium text-gray-800">Number of overdue tasks:</p>
+            </div>
+            <span class="text-3xl font-extrabold text-red-600">
+                {{ overdueTasksCount }}
+            </span>
+        </div>
     </div>
 </div>

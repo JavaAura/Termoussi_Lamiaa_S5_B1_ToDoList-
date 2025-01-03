@@ -20,6 +20,7 @@ export class TasksListComponent implements OnInit {
   taskToUpdate: Task | null = null;
   filteredTasks: Task[] = [];
   searchQuery: string = '';
+  showFavoritesOnly: boolean = false;
 
 
   constructor(private taskService: TaskService) { 
@@ -64,5 +65,34 @@ export class TasksListComponent implements OnInit {
     } else {
       this.filteredTasks = this.tasks;  
     }
+  }
+
+  toggleFavoritesFilter() {
+    this.showFavoritesOnly = !this.showFavoritesOnly;
+    this.updateFilteredTasks();
+  }
+  
+  updateFilteredTasks() {
+    if (this.showFavoritesOnly) {
+      this.filteredTasks = this.tasks.filter(task => task.isFavorite);
+    } else {
+      this.filteredTasks = this.tasks;
+    }
+
+    this.filteredTasks.sort((a, b) => {
+      if (a.isFavorite && !b.isFavorite) {
+        return -1; 
+      }
+      if (!a.isFavorite && b.isFavorite) {
+        return 1; 
+      }
+      return 0; 
+    });
+  }
+
+  onToggleFavorite(task: Task) {
+    task.isFavorite = !task.isFavorite;
+    this.taskService.updateTask(task); 
+    this.updateFilteredTasks();
   }
 }

@@ -8,7 +8,12 @@ import { Category } from '../models/category.model';
 export class CategoryService {
   private categoriesSource = new BehaviorSubject<Category[]>([]);
   categories$ = this.categoriesSource.asObservable();
+
+  private errorSource = new BehaviorSubject<string | null>(null);
+  error$ = this.errorSource.asObservable();
+
   constructor() { }
+
 
   addCategory(category: Category) {
     const currentCategories = this.categoriesSource.value;
@@ -49,4 +54,6 @@ export class CategoryService {
     const updatedCategories = currentCategories.filter(cat => cat.name !== categoryToDelete.name);
     this.categoriesSource.next(updatedCategories);
   }
+
+  
 }
